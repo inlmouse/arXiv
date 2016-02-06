@@ -1,0 +1,8 @@
+D:\Project\arXiv\arXiv\bin\Debug\arXiv.exe
+D:\Project\arXiv\arXiv\bin\Debug\arXiv.pdb
+D:\Project\arXiv\arXiv\obj\Debug\arXiv.csprojResolveAssemblyReference.cache
+D:\Project\arXiv\arXiv\obj\Debug\arXiv.Form1.resources
+D:\Project\arXiv\arXiv\obj\Debug\arXiv.Properties.Resources.resources
+D:\Project\arXiv\arXiv\obj\Debug\arXiv.csproj.GenerateResource.Cache
+D:\Project\arXiv\arXiv\obj\Debug\arXiv.exe
+D:\Project\arXiv\arXiv\obj\Debug\arXiv.pdb
