@@ -187,7 +187,7 @@ namespace arXiv
             dr["Singer"] = sing;
             dt.Rows.Add(dr);
             dt.AcceptChanges();
-            string ConnString = @"Data Source=182.92.236.197;Initial Catalog=SACS;User ID=sa;pwd=Glass6";
+            string ConnString = @"Data Source=*;Initial Catalog=*;User ID=sa;pwd=*";
             SqlConnection conn = new SqlConnection(ConnString);
             SqlCommand comm = new SqlCommand();
             comm.Connection = conn;
