@@ -15,32 +15,23 @@ using System.Windows.Forms;
 
 namespace arXiv
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
 
         private string[] idres;
         private string[] titleres;
+        public delegate void CallBackDelegate(string message);
 
-        private delegate void SetPos(int ipos, string vinfo);
-        public void RefreshPrg(int ipos, string vinfo)
+        //回调方法
+        private void CallBack(string message)
         {
-            if (this.InvokeRequired)
-            {
-                SetPos setpos = new SetPos(RefreshPrg);
-                this.Invoke(setpos, new object[] { ipos, vinfo });
-            }
-            else
-            {
-                this.label1.Text = ipos.ToString() + "%" + vinfo;
-                this.progressBar1.Value = Convert.ToInt32(ipos);
-            }
+            //主线程报告信息,可以根据这个信息做判断操作,执行不同逻辑.
+            MessageBox.Show(message);
         }
-
-
 
         private bool GetWebContent(string Url,out string strResult)
         {
@@ -52,7 +43,7 @@ namespace arXiv
                 request.Timeout = 30000;
                 //设置连接超时时间
                 //request.Headers.Set("Pragma", "no-cache");
-                request.UserAgent = "Movepoint";//这里需要fake一下
+                request.UserAgent = "Railgun";//这里需要fake一下
                 request.Accept = "*/*";
                 request.UseDefaultCredentials = true;
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();//403没有访问权限
@@ -72,44 +63,53 @@ namespace arXiv
 
         private void button1_Click(object sender, EventArgs e)
         {
-            process();
-        }
-
-        private void process()
-        {
-            string strResult;
-            //RefreshPrg(0, "正在获取该领域最新的论文");
-            label1.Text = "正在获取该领域最新的论文";
-            if (GetWebContent("http://arxiv.org/list/stat.ML/recent", out strResult))
+            ProcessUrl();
+            Thread[] t = new Thread[idres.Length];
+            for (int i = 0; i < idres.Length; i++)
             {
-                //this.richTextBox1.Text = strResult;
-                //RefreshPrg(10, "正在匹配信息");
-                if (label1.InvokeRequired)
-                {
-                    label1.Invoke(
-                            new MethodInvoker(delegate { label1.Text = "正在匹配信息"; }));
-                }
-                string idexpr = "<a href=\"" + @"/abs/\S*\.\S*" + "\" title";
-                idres = MatchExpr(strResult, idexpr);
-                string abs = GetAbsUrl(idres[0]);
-                string titlexpr = "<span class=\"descriptor\">Title:</span> " + @".*";
-                titleres = MatchExpr(strResult, titlexpr);
-                string title = GetTitle(titleres[0]);
-                for (int i = 0; i < idres.Length; i++)
-                {
-                    idres[i] = GetAbsUrl(idres[i]);
-                    titleres[i] = GetTitle(titleres[i]);
-                    richTextBox1.Text += "id: " + idres[i] + ",  Title: " + titleres[i] + ";\n";
-                    //RefreshPrg(10 + 90 / idres.Length, "正在下载论文" + titleres[i]);
-                    label1.Text = "正在下载论文" + titleres[i];
-                    if (!DownloadPaper("http://arxiv.org/pdf/" + idres[i] + ".pdf", titleres[i]))
-                    {
-                        RefreshPrg(10 + 90/idres.Length, titleres[i] + "下载失败");
-                    }
-                }
-                RefreshPrg(100, "下载完毕");
+                //downloadprocess(i);
+                t[i] = new Thread(new ParameterizedThreadStart(downloadprocess));
+                t[i].Start(i);
+                
             }
         }
+
+        private void ProcessUrl()
+        {
+            string strResult;
+            if (GetWebContent("http://arxiv.org/list/stat.ML/recent", out strResult))
+            {
+                string idexpr = "<a href=\"" + @"/abs/\S*\.\S*" + "\" title";
+                idres = MatchExpr(strResult, idexpr);
+                //string abs = GetAbsUrl(idres[0]);
+                string titlexpr = "<span class=\"descriptor\">Title:</span> " + @".*";
+                titleres = MatchExpr(strResult, titlexpr);
+                //string title = GetTitle(titleres[0]);
+                
+            }
+        }
+
+        private void downloadprocess(object obj)
+        {
+            int i = Convert.ToInt32(obj);
+            //把回调的方法给委托变量
+            CallBackDelegate cbd = CallBack;
+            //for (int i = 0; i < idres.Length; i++)
+            //{
+            idres[i] = GetAbsUrl(idres[i]);
+            titleres[i] = GetTitle(titleres[i]);
+            
+                //richTextBox1.Text += "id: " + idres[i] + ",  Title: " + titleres[i] + ";\n";
+            if (DownloadPaper("http://arxiv.org/pdf/" + idres[i] + ".pdf", titleres[i]))
+            {
+                //把传来的参数转换为委托
+                cbd = obj as CallBackDelegate;
+                //执行回调.
+                cbd("这个线程传回的信息");
+            }
+            //}
+        }
+
 
         private static string GetAbsUrl(string x)
         {
@@ -132,6 +132,12 @@ namespace arXiv
                 myWebClient.Headers.Add("User-Agent: Other");
                 if (!File.Exists(@"C:\Users\asus\Desktop\test\" + FileName + ".pdf"))
                 {
+                    if (richTextBox1.InvokeRequired)
+                    {
+                        richTextBox1.Invoke(
+                            new MethodInvoker(
+                                delegate { richTextBox1.Text += "id: " + URL + ",  Title: " + FileName + ";\n"; }));
+                    }
                     myWebClient.DownloadFile(URL, @"C:\Users\asus\Desktop\test\" + FileName + ".pdf");
                 }
                 return true;
