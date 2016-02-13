@@ -129,8 +129,16 @@ namespace arXiv
             {
                 WebClient myWebClient = new WebClient();
                 myWebClient.UseDefaultCredentials = true;
-                myWebClient.Headers.Add("User-Agent: Other");
-                if (!File.Exists(@"C:\Users\asus\Desktop\test\" + FileName + ".pdf"))
+                myWebClient.Headers.Add("User-Agent: Other"); string cpath = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\arXivPaper";
+                if (!Directory.Exists(cpath))
+                {
+                    Directory.CreateDirectory(cpath);
+                }
+                //if (!File.Exists(cpath + @"\" + FileName + ".pdf"))
+                //{
+                //    myWebClient.DownloadFile(URL, cpath + @"\" + FileName + ".pdf");
+                //}
+                if (!File.Exists(cpath + @"\" + FileName + ".pdf"))
                 {
                     if (richTextBox1.InvokeRequired)
                     {
@@ -138,7 +146,7 @@ namespace arXiv
                             new MethodInvoker(
                                 delegate { richTextBox1.Text += "id: " + URL + ",  Title: " + FileName + ";\n"; }));
                     }
-                    myWebClient.DownloadFile(URL, @"C:\Users\asus\Desktop\test\" + FileName + ".pdf");
+                    myWebClient.DownloadFile(URL, cpath + @"\" + FileName + ".pdf");
                 }
                 return true;
             }
@@ -259,6 +267,11 @@ namespace arXiv
             dataGridView1.DataSource = dt.DefaultView;
             dataGridView1.Columns[1].Width = 165;
             dataGridView1.Columns[2].Width = 165;
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
 
     }

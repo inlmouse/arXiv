@@ -14,3 +14,11 @@ C:\Users\asus\Documents\GitHub\arXiv\arXiv\obj\Debug\arXiv.csprojResolveAssembly
 C:\Users\asus\Documents\GitHub\arXiv\arXiv\obj\Debug\arXiv.MainForm.resources
 C:\Users\asus\Documents\GitHub\arXiv\arXiv\obj\Debug\arXiv.Properties.Resources.resources
 C:\Users\asus\Documents\GitHub\arXiv\arXiv\obj\Debug\arXiv.csproj.GenerateResource.Cache
+C:\Users\Chen\Documents\GitHub\arXiv\arXiv\obj\Debug\arXiv.exe
+C:\Users\Chen\Documents\GitHub\arXiv\arXiv\obj\Debug\arXiv.pdb
+C:\Users\Chen\Documents\GitHub\arXiv\arXiv\bin\Debug\arXiv.exe
+C:\Users\Chen\Documents\GitHub\arXiv\arXiv\bin\Debug\arXiv.pdb
+C:\Users\Chen\Documents\GitHub\arXiv\arXiv\obj\Debug\arXiv.csprojResolveAssemblyReference.cache
+C:\Users\Chen\Documents\GitHub\arXiv\arXiv\obj\Debug\arXiv.MainForm.resources
+C:\Users\Chen\Documents\GitHub\arXiv\arXiv\obj\Debug\arXiv.Properties.Resources.resources
+C:\Users\Chen\Documents\GitHub\arXiv\arXiv\obj\Debug\arXiv.csproj.GenerateResource.Cache
