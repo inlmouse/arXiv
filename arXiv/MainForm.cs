@@ -93,7 +93,7 @@ namespace arXiv
         {
             int i = Convert.ToInt32(obj);
             //把回调的方法给委托变量
-            CallBackDelegate cbd = CallBack;
+            //CallBackDelegate cbd = CallBack;
             //for (int i = 0; i < idres.Length; i++)
             //{
             idres[i] = GetAbsUrl(idres[i]);
@@ -103,9 +103,9 @@ namespace arXiv
             if (DownloadPaper("http://arxiv.org/pdf/" + idres[i] + ".pdf", titleres[i]))
             {
                 //把传来的参数转换为委托
-                cbd = obj as CallBackDelegate;
-                //执行回调.
-                cbd("这个线程传回的信息");
+                //cbd = obj as CallBackDelegate;
+                ////执行回调.
+                //cbd("这个线程传回的信息");
             }
             //}
         }
