@@ -274,5 +274,34 @@ namespace arXiv
 
         }
 
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (e.Action == TreeViewAction.ByMouse)
+            {
+                if (e.Node.Checked)//若选中了某节点，则设置其所有子节点为选中状态
+                {
+                    TreeViewOperator.setChildNodeCheckedState(e.Node, true);
+                }
+                else
+                {
+                    TreeViewOperator.setChildNodeCheckedState(e.Node, false);//否则设置其所有字节点为没选中状态
+                    if (e.Node.Parent != null)
+                    {
+                        TreeViewOperator.setParentNodeCheckedState(e.Node, false);//如果当前节点有父节点，则取消父节点选中状态
+                    }
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            TreeNode tnode = treeView1.TopNode;//得到topnode,也就是treeview的最最最根节点（第一列节点）
+            while (tnode.PrevNode != null)
+            {
+                tnode = tnode.PrevNode;//最最最根节点不止一个吗，一直往上找，找到最左上角那个节点
+            }
+            TreeViewOperator.getstring(tnode);
+        }
+
     }
 }
