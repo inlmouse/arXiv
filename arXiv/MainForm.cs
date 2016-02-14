@@ -264,9 +264,9 @@ namespace arXiv
 
             }
 
-            dataGridView1.DataSource = dt.DefaultView;
-            dataGridView1.Columns[1].Width = 165;
-            dataGridView1.Columns[2].Width = 165;
+            //dataGridView1.DataSource = dt.DefaultView;
+            //dataGridView1.Columns[1].Width = 165;
+            //dataGridView1.Columns[2].Width = 165;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
