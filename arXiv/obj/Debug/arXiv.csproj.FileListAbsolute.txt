@@ -22,3 +22,11 @@ C:\Users\Chen\Documents\GitHub\arXiv\arXiv\obj\Debug\arXiv.csprojResolveAssembly
 C:\Users\Chen\Documents\GitHub\arXiv\arXiv\obj\Debug\arXiv.MainForm.resources
 C:\Users\Chen\Documents\GitHub\arXiv\arXiv\obj\Debug\arXiv.Properties.Resources.resources
 C:\Users\Chen\Documents\GitHub\arXiv\arXiv\obj\Debug\arXiv.csproj.GenerateResource.Cache
+C:\Users\Glass\Documents\GitHub\arXiv\arXiv\obj\Debug\arXiv.exe
+C:\Users\Glass\Documents\GitHub\arXiv\arXiv\obj\Debug\arXiv.pdb
+C:\Users\Glass\Documents\GitHub\arXiv\arXiv\bin\Debug\arXiv.exe
+C:\Users\Glass\Documents\GitHub\arXiv\arXiv\bin\Debug\arXiv.pdb
+C:\Users\Glass\Documents\GitHub\arXiv\arXiv\obj\Debug\arXiv.csprojResolveAssemblyReference.cache
+C:\Users\Glass\Documents\GitHub\arXiv\arXiv\obj\Debug\arXiv.MainForm.resources
+C:\Users\Glass\Documents\GitHub\arXiv\arXiv\obj\Debug\arXiv.Properties.Resources.resources
+C:\Users\Glass\Documents\GitHub\arXiv\arXiv\obj\Debug\arXiv.csproj.GenerateResource.Cache
