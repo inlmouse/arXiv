@@ -13,6 +13,7 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using WebDatabaseConnection;
 
 namespace arXiv
 {
@@ -302,6 +303,9 @@ namespace arXiv
                 tnode = tnode.PrevNode;//最最最根节点不止一个吗，一直往上找，找到最左上角那个节点
             }
             TreeViewOperator.getstring(tnode);
+            //Connection connection=new Connection("SACS");
+            //bool x=connection.Modify("ActiveInfo", "ActiveName", "test", "ActiveID", "5");
+            //MessageBox.Show(x.ToString());
         }
 
     }
