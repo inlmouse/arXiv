@@ -30,3 +30,5 @@ C:\Users\Glass\Documents\GitHub\arXiv\arXiv\obj\Debug\arXiv.csprojResolveAssembl
 C:\Users\Glass\Documents\GitHub\arXiv\arXiv\obj\Debug\arXiv.MainForm.resources
 C:\Users\Glass\Documents\GitHub\arXiv\arXiv\obj\Debug\arXiv.Properties.Resources.resources
 C:\Users\Glass\Documents\GitHub\arXiv\arXiv\obj\Debug\arXiv.csproj.GenerateResource.Cache
+D:\Users\DELL\Documents\GitHub\arXiv\arXiv\obj\Debug\arXiv.exe
+D:\Users\DELL\Documents\GitHub\arXiv\arXiv\obj\Debug\arXiv.pdb
